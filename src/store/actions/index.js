@@ -1,0 +1,1 @@
+export { initMovies } from "./movie";
