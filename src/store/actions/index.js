@@ -1,1 +1,8 @@
-export { initMovies } from "./movie";
+export {
+  initMovies,
+  deleteMovie,
+  addLike,
+  addDislike,
+  initCategories,
+  toggleFilter,
+} from "./movie";
