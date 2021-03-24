@@ -14,10 +14,11 @@ export const deleteMovie = (id) => {
   };
 };
 
-export const toggleFilter = (filterName) => {
+export const toggleFilter = (filterArray, allMovies) => {
   return {
     type: actionTypes.TOGGLE_FILTER,
-    filterName: filterName,
+    filterArray: filterArray,
+    movies: allMovies,
   };
 };
 

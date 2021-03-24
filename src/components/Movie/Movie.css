@@ -1,0 +1,7 @@
+.movie-card {
+    margin: 10px 0;
+    border: 1px solid black;
+    width: 20%;
+    min-width: 250px;
+    border-radius: 10px;
+}

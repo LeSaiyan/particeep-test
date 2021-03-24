@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { useDispatch } from "react-redux";
 import { deleteMovie, addLike, addDislike } from "../../store/actions/index";
+import "./Movie.css";
 
 const Movie = (props) => {
   const dispatch = useDispatch();
@@ -9,7 +10,6 @@ const Movie = (props) => {
   const [dislike, setDislike] = useState(false);
 
   const deleteHandler = (id) => {
-    console.log(id);
     dispatch(deleteMovie(id));
   };
 
@@ -27,7 +27,7 @@ const Movie = (props) => {
     (props.movie.likes * 100) / (props.movie.likes + props.movie.dislikes);
 
   return (
-    <div>
+    <div className="movie-card">
       <strong>{props.movie.title}</strong>
       <p>{props.movie.category}</p>
       <LinearProgress variant="determinate" value={progress} />

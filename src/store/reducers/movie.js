@@ -21,34 +21,48 @@ const initCategories = (state, action) => {
 };
 
 const toggleFilter = (state, action) => {
-  const filters = [...state.filters];
-  const indexFilter = state.filters.findIndex(
-    (filter) => filter === action.filterName
-  );
+  const allMovies = [...action.movies];
 
-  console.log(action.filterName);
+  const newMovieList = [];
 
-  if (!indexFilter[0] >= 0) {
-    filters.push(action.filterName);
+  if (action.filterArray.length > 0) {
+    allMovies.forEach((movie) => {
+      action.filterArray.forEach((filter) => {
+        if (movie.category === filter) {
+          newMovieList.push(movie);
+        }
+      });
+    });
+    return {
+      ...state,
+      filters: action.filterArray,
+      movies: newMovieList,
+    };
   } else {
-    filters.slice(indexFilter, indexFilter);
+    return {
+      ...state,
+      filters: [],
+      movies: allMovies,
+    };
   }
-
-  console.log(filters);
-  return {
-    ...state,
-    // categories: action.categories,
-  };
 };
 
 const deleteMovie = (state, action) => {
   const movies = [...state.movies];
 
+  let categories = [];
+
   const updatedMovies = movies.filter((movie) => movie.id !== action.id);
 
+  updatedMovies.forEach((movie) => {
+    if (!categories.includes(movie.category)) {
+      categories.push(movie.category);
+    }
+  });
   return {
     ...state,
     movies: updatedMovies,
+    categories: categories,
   };
 };
 
@@ -79,8 +93,6 @@ const addDislike = (state, action) => {
   } else {
     movies[indexMovie].dislikes = movies[indexMovie].dislikes - 1;
   }
-
-  console.log(movies);
 
   return {
     ...state,
