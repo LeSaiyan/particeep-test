@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./MovieList.css";
 import Movie from "../Movie/Movie";
 import SelectCategory from "../SelectCategory/SelectCategory";
 
-const MoviesList = (props) => {
-  const paginate = (array, page_size, page_number) => {
-    return array.slice((page_number - 1) * page_size, page_number * page_size);
-  };
-  let page;
-  if (props.movieList) {
-    page = paginate(props.movieList, 4, 1);
-  }
+import SelectItemPerPage from "../SelectItemPerPage/SelectItemPerPage";
+import Pagination from "../Pagination/Pagination";
 
+const MoviesList = (props) => {
   return (
     <div>
-      <SelectCategory categorieList={props.categorieList} />
       <div className="movie-list">
         {props.movieList
           ? props.movieList.map((element) => (
@@ -22,6 +16,9 @@ const MoviesList = (props) => {
             ))
           : null}
       </div>
+      <SelectCategory categorieList={props.categorieList} />
+      <SelectItemPerPage />
+      <Pagination />
     </div>
   );
 };

@@ -1,0 +1,18 @@
+.pagination {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.pagination img {
+    width: 100%;
+    margin: 5px;
+}
+
+.pagination button {
+    border: 0;
+    background: none;
+    width: 50px;
+    padding: 0;
+}

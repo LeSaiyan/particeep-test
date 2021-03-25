@@ -4,8 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 
-import { store } from "./config/store";
+import movieReducer from "./store/reducers/movie";
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  movieReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
 
 ReactDOM.render(
   <Provider store={store}>

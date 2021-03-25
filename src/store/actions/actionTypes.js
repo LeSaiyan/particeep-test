@@ -4,3 +4,6 @@ export const DELETE_MOVIE = "DELETE_MOVIE";
 export const ADD_LIKE = "ADD_LIKE";
 export const ADD_DISLIKE = "ADD_DISLIKE";
 export const TOGGLE_FILTER = "TOGGLE_FILTER";
+export const CHANGE_PAGE = "CHANGE_PAGE";
+export const GET_MOVIE_TO_SHOW = "GET_MOVIE_TO_SHOW";
+export const CHANGE_ITEM_PER_PAGE = "CHANGE_ITEM_PER_PAGE";

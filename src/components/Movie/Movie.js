@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import LinearProgress from "@material-ui/core/LinearProgress";
 import { useDispatch } from "react-redux";
-import { deleteMovie, addLike, addDislike } from "../../store/actions/index";
+import {
+  deleteMovie,
+  addLike,
+  addDislike,
+  getMoviesToShow,
+} from "../../store/actions/index";
 import "./Movie.css";
+
+import RatingBar from "../RatingBar/RatingBar";
+import LikeMenu from "../LikeMenu/LikeMenu";
 
 const Movie = (props) => {
   const dispatch = useDispatch();
@@ -11,6 +18,7 @@ const Movie = (props) => {
 
   const deleteHandler = (id) => {
     dispatch(deleteMovie(id));
+    dispatch(getMoviesToShow());
   };
 
   const likeHandler = (id) => {
@@ -23,17 +31,21 @@ const Movie = (props) => {
     dispatch(addDislike(id, !dislike));
   };
 
-  let progress =
-    (props.movie.likes * 100) / (props.movie.likes + props.movie.dislikes);
-
   return (
     <div className="movie-card">
+      <div
+        onClick={() => deleteHandler(props.movie.id)}
+        className="trash"
+      ></div>
       <strong>{props.movie.title}</strong>
       <p>{props.movie.category}</p>
-      <LinearProgress variant="determinate" value={progress} />
-      <button onClick={() => deleteHandler(props.movie.id)}>SUPP</button>
-      <button onClick={() => likeHandler(props.movie.id)}>LIKE</button>
-      <button onClick={() => dislikeHandler(props.movie.id)}>DISLIKE</button>
+      <RatingBar likes={props.movie.likes} dislikes={props.movie.dislikes} />
+      <LikeMenu
+        dislike={dislike}
+        like={like}
+        liked={() => likeHandler(props.movie.id)}
+        disliked={() => dislikeHandler(props.movie.id)}
+      />
     </div>
   );
 };
